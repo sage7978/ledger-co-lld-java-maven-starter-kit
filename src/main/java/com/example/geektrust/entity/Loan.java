@@ -1,9 +1,11 @@
 package com.example.geektrust.entity;
 
 public class Loan {
+    private static double PERCENTAGE_DENOMINATOR             = 100.0;
+    private static int NUMBER_OF_MONTHS_IN_A_YEAR            = 12;
     private double principal;
     private int tenure;
-    private double interest;
+    private double rateOfInterest;
 
     public double getPrincipal() {
         return principal;
@@ -21,17 +23,33 @@ public class Loan {
         this.tenure = tenure;
     }
 
-    public double getInterest() {
-        return interest;
+    public double getRateOfInterest() {
+        return rateOfInterest;
     }
 
-    public void setInterest(double interest) {
-        this.interest = interest;
+    public void setRateOfInterest(double rateOfInterest) {
+        this.rateOfInterest = rateOfInterest;
     }
 
-    public Loan(double principal, int tenure, double interest) {
+    public Loan(double principal, int tenure, double rateOfInterest) {
         this.principal = principal;
         this.tenure = tenure;
-        this.interest = interest;
+        this.rateOfInterest = rateOfInterest;
+    }
+
+    public double getInterest(){
+        return (principal * rateOfInterest * tenure) / PERCENTAGE_DENOMINATOR;
+    }
+
+    public int getTenureInMonths() {
+        return NUMBER_OF_MONTHS_IN_A_YEAR * tenure;
+    }
+
+    public int getMonthlyEMI(){
+        return (int)Math.ceil(getTotalAmount() / getTenureInMonths());
+    }
+
+    public double getTotalAmount(){
+        return principal + getInterest();
     }
 }
