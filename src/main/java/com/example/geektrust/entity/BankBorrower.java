@@ -14,6 +14,6 @@ public class BankBorrower {
     }
 
     public boolean doesBankMatch(String bankName){
-        return bank.getName().equalsIgnoreCase(bankName);
+        return bank.equalsName(bankName);
     }
 }
