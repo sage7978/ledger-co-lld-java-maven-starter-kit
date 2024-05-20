@@ -21,6 +21,6 @@ public class PaymentManager extends GenericManager implements CommandExecutable 
     public void execute() {
         Borrower borrower = BorrowerEntries.getInstance().fetchBorrower(inputBorrower);
         CurrentLoan currentLoan = borrower.fetchBank(inputBank).getCurrentLoan();
-        currentLoan.getEmiList().add(new EMI(inputEmiPaid, inputLumpSum));
+        currentLoan.addEMI(inputEmiPaid, inputLumpSum);
     }
 }

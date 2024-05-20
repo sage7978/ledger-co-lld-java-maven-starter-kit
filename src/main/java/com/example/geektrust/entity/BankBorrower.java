@@ -9,20 +9,8 @@ public class BankBorrower {
         this.currentLoan = new CurrentLoan(inputPrincipal, inputTenure, inputRate);
     }
 
-    public Bank getBank() {
-        return bank;
-    }
-
-    public void setBank(Bank bank) {
-        this.bank = bank;
-    }
-
     public CurrentLoan getCurrentLoan() {
         return currentLoan;
-    }
-
-    public void setCurrentLoan(CurrentLoan currentLoan) {
-        this.currentLoan = currentLoan;
     }
 
     public boolean doesBankMatch(String bankName){

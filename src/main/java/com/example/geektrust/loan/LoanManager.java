@@ -1,7 +1,6 @@
 package com.example.geektrust.loan;
 
 import com.example.geektrust.GenericManager;
-import com.example.geektrust.Main;
 import com.example.geektrust.entity.*;
 import com.example.geektrust.features.CommandExecutable;
 

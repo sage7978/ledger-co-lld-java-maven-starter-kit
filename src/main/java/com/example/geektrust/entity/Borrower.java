@@ -1,23 +1,14 @@
 package com.example.geektrust.entity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class Borrower extends User{
-    private List<BankBorrower> bankBorrowers;
+    private final List<BankBorrower> bankBorrowers;
 
     public Borrower(String name) {
         super(name);
         bankBorrowers = new ArrayList<>();
-    }
-
-    public List<BankBorrower> getBankBorrowers() {
-        return bankBorrowers;
-    }
-
-    public void setBankBorrowers(List<BankBorrower> bankBorrowers) {
-        this.bankBorrowers = bankBorrowers;
     }
 
     public void addBank(String bankName, double inputPrincipal, int inputTenure, double inputRate){
@@ -30,5 +21,10 @@ public class Borrower extends User{
                             .filter(e -> e.doesBankMatch(bankName))
                             .findFirst()
                             .orElse(null);
+    }
+
+    public CurrentLoan fetchCurrentLoan(String inputBank) {
+        BankBorrower bankBorrower = fetchBank(inputBank);
+        return bankBorrower.getCurrentLoan();
     }
 }

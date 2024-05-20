@@ -1,35 +1,11 @@
 package com.example.geektrust.entity;
 
 public class Loan {
-    private static double PERCENTAGE_DENOMINATOR             = 100.0;
-    private static int NUMBER_OF_MONTHS_IN_A_YEAR            = 12;
-    private double principal;
-    private int tenure;
-    private double rateOfInterest;
-
-    public double getPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(double principal) {
-        this.principal = principal;
-    }
-
-    public int getTenure() {
-        return tenure;
-    }
-
-    public void setTenure(int tenure) {
-        this.tenure = tenure;
-    }
-
-    public double getRateOfInterest() {
-        return rateOfInterest;
-    }
-
-    public void setRateOfInterest(double rateOfInterest) {
-        this.rateOfInterest = rateOfInterest;
-    }
+    private static final double PERCENTAGE_DENOMINATOR             = 100.0;
+    private static final int NUMBER_OF_MONTHS_IN_A_YEAR            = 12;
+    private final double principal;
+    private final int tenure;
+    private final double rateOfInterest;
 
     public Loan(double principal, int tenure, double rateOfInterest) {
         this.principal = principal;

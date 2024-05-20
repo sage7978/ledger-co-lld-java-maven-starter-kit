@@ -4,28 +4,12 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CurrentLoan {
-    private Loan loan;
-    private Set<EMI> emiList;
-
-    public CurrentLoan(){
-        emiList = new TreeSet<>();
-    }
+    private final Loan loan;
+    private final Set<EMI> emiList;
 
     public CurrentLoan(double inputPrincipal, int inputTenure, double inputRate){
         emiList = new TreeSet<>();
-        Loan loan = new Loan(inputPrincipal, inputTenure, inputRate);
-
-        this.loan = loan;
-    }
-
-
-
-    public Loan getLoan() {
-        return loan;
-    }
-
-    public void setLoan(Loan loan) {
-        this.loan = loan;
+        this.loan = new Loan(inputPrincipal, inputTenure, inputRate);
     }
 
     public Integer getMonthlyEMI() {
@@ -34,14 +18,6 @@ public class CurrentLoan {
 
     public Double getTotal() {
         return loan.getTotalAmount();
-    }
-
-    public Set<EMI> getEmiList() {
-        return emiList;
-    }
-
-    public void setEmiList(Set<EMI> emiList) {
-        this.emiList = emiList;
     }
 
     public int extraAmountPaid(int inputEmiPaid) {
@@ -61,5 +37,9 @@ public class CurrentLoan {
 
     public int remainingEMIs(int inputEmiPaid){
         return (int)Math.ceil((getTotal() - amountPaid(inputEmiPaid)) / getMonthlyEMI());
+    }
+
+    public void addEMI(Integer inputEmiPaid, Double inputLumpSum) {
+        emiList.add(new EMI(inputEmiPaid, inputLumpSum));
     }
 }
