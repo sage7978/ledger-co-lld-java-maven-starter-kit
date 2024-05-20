@@ -1,5 +1,17 @@
 package com.example.geektrust.entity;
 
 public class Bank {
-    public String name;
+    private String name;
+
+    public Bank(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

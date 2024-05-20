@@ -18,6 +18,6 @@ public class PaymentManager extends GenericManager implements CommandExecutable 
     @Override
     public void execute() {
         CurrentLoan currentLoan = Main.userLoan.get(inputBorrower);
-        currentLoan.emiList.add(new EMI(inputEmiPaid, inputLumpSum));
+        currentLoan.getEmiList().add(new EMI(inputEmiPaid, inputLumpSum));
     }
 }

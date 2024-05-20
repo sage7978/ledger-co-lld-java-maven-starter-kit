@@ -25,19 +25,15 @@ public class LoanManager extends GenericManager implements CommandExecutable {
     }
 
     public CurrentLoan fetchCurrentLoan(){
-        Bank currentBank = new Bank();
-        currentBank.name = inputBank;
+        Bank currentBank = new Bank(inputBank);
 
-        Loan loan = new Loan();
-        loan.interest = inputRate;
-        loan.principal = inputPrincipal;
-        loan.tenure = inputTenure;
+        Loan loan = new Loan(inputPrincipal, inputTenure, inputRate);
 
         CurrentLoan currentLoan = new CurrentLoan();
-        currentLoan.loan = loan;
-        currentLoan.bank = currentBank;
-        currentLoan.total = inputPrincipal + ((loan.principal * loan.interest * loan.tenure * 1.0D) / 100);
-        currentLoan.monthlyEMI = (int) Math.ceil(currentLoan.total / (currentLoan.loan.tenure * 12));
+        currentLoan.setLoan(loan);
+        currentLoan.setBank(currentBank);
+        currentLoan.setTotal(inputPrincipal + ((loan.getPrincipal() * loan.getInterest() * loan.getTenure() * 1.0D) / 100));
+        currentLoan.setMonthlyEMI((int) Math.ceil(currentLoan.getTotal() / (currentLoan.getLoan().getTenure() * 12)));
 
         return currentLoan;
     }

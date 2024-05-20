@@ -18,8 +18,8 @@ public class BalanceManager extends GenericManager implements CommandExecutable 
         // input EMI paid -> remaining amount -> remaining number of EMIs
         CurrentLoan currentLoan = Main.userLoan.get(inputBorrower);
         int extraAmountPaid = currentLoan.amountPaidUpto(inputEmiPaid);
-        int amountPaid = inputEmiPaid * currentLoan.monthlyEMI + extraAmountPaid;
-        int remainingEMIs = (int)Math.ceil((currentLoan.total - amountPaid) / currentLoan.monthlyEMI * 1.0D);
+        int amountPaid = inputEmiPaid * currentLoan.getMonthlyEMI() + extraAmountPaid;
+        int remainingEMIs = (int)Math.ceil((currentLoan.getTotal() - amountPaid) / currentLoan.getMonthlyEMI() * 1.0D);
         System.out.printf("%s %s %d %d%n", inputBank, inputBorrower, amountPaid, remainingEMIs);
     }
 }
