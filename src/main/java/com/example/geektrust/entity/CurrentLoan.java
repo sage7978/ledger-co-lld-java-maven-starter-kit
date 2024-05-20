@@ -23,9 +23,7 @@ public class CurrentLoan {
     public int extraAmountPaid(int inputEmiPaid) {
         int extra = 0;
         for(EMI emi: emiList){
-            if(inputEmiPaid >= emi.getEmiPaid()){
-                extra += emi.getLumpSum();
-            }
+            extra += emi.toBeCounted(inputEmiPaid);
         }
         return extra;
     }

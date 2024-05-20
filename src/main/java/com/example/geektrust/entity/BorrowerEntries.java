@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class BorrowerEntries {
     private static BorrowerEntries ins = null;
-    private HashMap<String, Borrower> hashMap;
+    private final HashMap<String, Borrower> hashMap;
 
     private BorrowerEntries() {
         this.hashMap = new HashMap<>();
@@ -15,14 +15,6 @@ public class BorrowerEntries {
             ins = new BorrowerEntries();
         }
         return ins;
-    }
-
-    public HashMap<String, Borrower> getHashMap() {
-        return hashMap;
-    }
-
-    public void setHashMap(HashMap<String, Borrower> hashMap) {
-        this.hashMap = hashMap;
     }
 
     public Borrower fetchBorrower(String name){
