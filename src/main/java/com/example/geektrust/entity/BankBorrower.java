@@ -1,8 +1,8 @@
 package com.example.geektrust.entity;
 
 public class BankBorrower {
-    private Bank bank;
-    private CurrentLoan currentLoan;
+    private final Bank bank;
+    private final CurrentLoan currentLoan;
 
     public BankBorrower(String bankName, double inputPrincipal, int inputTenure, double inputRate) {
         this.bank = new Bank(bankName);
@@ -14,6 +14,6 @@ public class BankBorrower {
     }
 
     public boolean doesBankMatch(String bankName){
-        return bank.getName().equalsIgnoreCase(bankName);
+        return bank.equalsName(bankName);
     }
 }
