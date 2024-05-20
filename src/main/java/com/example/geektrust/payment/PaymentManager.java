@@ -2,6 +2,8 @@ package com.example.geektrust.payment;
 
 import com.example.geektrust.GenericManager;
 import com.example.geektrust.Main;
+import com.example.geektrust.entity.Borrower;
+import com.example.geektrust.entity.BorrowerEntries;
 import com.example.geektrust.entity.CurrentLoan;
 import com.example.geektrust.entity.EMI;
 import com.example.geektrust.features.CommandExecutable;
@@ -17,7 +19,8 @@ public class PaymentManager extends GenericManager implements CommandExecutable 
 
     @Override
     public void execute() {
-        CurrentLoan currentLoan = Main.userLoan.get(inputBorrower);
+        Borrower borrower = BorrowerEntries.getInstance().fetchBorrower(inputBorrower);
+        CurrentLoan currentLoan = borrower.fetchBank(inputBank).getCurrentLoan();
         currentLoan.getEmiList().add(new EMI(inputEmiPaid, inputLumpSum));
     }
 }

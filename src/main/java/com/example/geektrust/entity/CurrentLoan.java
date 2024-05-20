@@ -4,7 +4,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CurrentLoan {
-    private Bank bank;
+    public static int NUMBER_OF_MONTHS_IN_A_YEAR            = 12;
+    public static double PERCENTAGE_DENOMINATOR             = 100.0;
     private Loan loan;
     private Integer monthlyEMI;
     private Double total;
@@ -14,13 +15,20 @@ public class CurrentLoan {
         emiList = new TreeSet<>();
     }
 
-    public Bank getBank() {
-        return bank;
+    public CurrentLoan(double inputPrincipal, int inputTenure, double inputRate){
+        emiList = new TreeSet<>();
+        Loan loan = new Loan(inputPrincipal, inputTenure, inputRate);
+
+        this.loan = loan;
+
+        double interestAmt = loan.getPrincipal() * loan.getInterest() * loan.getTenure() / PERCENTAGE_DENOMINATOR;
+        this.total = inputPrincipal + interestAmt;
+
+        int numberOfMonths = loan.getTenure() * NUMBER_OF_MONTHS_IN_A_YEAR;
+        this.monthlyEMI = (int)Math.ceil(this.total / numberOfMonths);
     }
 
-    public void setBank(Bank bank) {
-        this.bank = bank;
-    }
+
 
     public Loan getLoan() {
         return loan;

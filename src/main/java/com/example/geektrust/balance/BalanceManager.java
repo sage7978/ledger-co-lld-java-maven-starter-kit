@@ -2,6 +2,8 @@ package com.example.geektrust.balance;
 
 import com.example.geektrust.GenericManager;
 import com.example.geektrust.Main;
+import com.example.geektrust.entity.Borrower;
+import com.example.geektrust.entity.BorrowerEntries;
 import com.example.geektrust.entity.CurrentLoan;
 import com.example.geektrust.features.CommandExecutable;
 
@@ -16,7 +18,8 @@ public class BalanceManager extends GenericManager implements CommandExecutable 
     @Override
     public void execute() {
         // input EMI paid -> remaining amount -> remaining number of EMIs
-        CurrentLoan currentLoan = Main.userLoan.get(inputBorrower);
+        Borrower borrower = BorrowerEntries.getInstance().fetchBorrower(inputBorrower);
+        CurrentLoan currentLoan = borrower.fetchBank(inputBank).getCurrentLoan();
         int extraAmountPaid = currentLoan.amountPaidUpto(inputEmiPaid);
         int amountPaid = inputEmiPaid * currentLoan.getMonthlyEMI() + extraAmountPaid;
         int remainingEMIs = (int)Math.ceil((currentLoan.getTotal() - amountPaid) / currentLoan.getMonthlyEMI() * 1.0D);
