@@ -1,7 +1,7 @@
 package com.example.geektrust.entity;
 
 public class Bank {
-    private String name;
+    private final String name;
 
     public Bank(String name) {
         this.name = name;
